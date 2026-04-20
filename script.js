@@ -69,7 +69,7 @@ const data = {
       "id": "snicker",
       "name": "Snickers",
       "emoji": "😋",
-      "image": "https://i.pinimg.com/736x/c2/63/46/c263467d743cb8c8df178326d01fb830.jpg",
+      "image": "https://i.pinimg.com/736x/c2/63/46/c263467d743cb8c8df178326d01fb830.jpg"
     },
     {
       "id": "beverages",
