@@ -10,10 +10,7 @@ const WHATSAPP_NUMBER = '1234567890'; // Replace with your WhatsApp number (no +
 // ─── State ────────────────────────────────────────────────────────────────────
 let cart = {};           // { productId: { ...product, qty } }
 let productsData = [];   // All products from JSON
-let categoriesData = [];
-
-// All categories from JSON
-
+let categoriesData = []; // All categories from JSON
 
 
 
@@ -309,7 +306,6 @@ const data = {
 
 
 
-
 let lastOrderId = null;  // Most recent order ID
 let bannerInterval;      // Auto-slide interval
 let currentBanner = 0;
@@ -337,11 +333,26 @@ document.addEventListener('DOMContentLoaded', async () => {
 // LOAD PRODUCTS FROM SERVER / JSON
 // ═══════════════════════════════════════════════════════════════════════════════
 async function loadProducts() {
-  productsData = data.products;
-  categoriesData = data.categories;
-
-  renderCategories(categoriesData);
-  renderProducts(productsData);
+  try {
+    const res = await fetch(`${API_BASE}/products`);
+    const data = await res.json();
+    productsData = data.products;
+    categoriesData = data.categories;
+    renderCategories(data.categories);
+    renderProducts(data.products);
+  } catch (err) {
+    // Fallback: load from products.json directly (for static serving)
+    try {
+      const res = await fetch('./products.json');
+      const data = await res.json();
+      productsData = data.products;
+      categoriesData = data.categories;
+      renderCategories(data.categories);
+      renderProducts(data.products);
+    } catch (e) {
+      console.error('Failed to load products:', e);
+    }
+  }
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -974,7 +985,173 @@ function initBanner() {
 // ═══════════════════════════════════════════════════════════════════════════════
 // ADMIN PANEL
 // ═══════════════════════════════════════════════════════════════════════════════
+function initAdmin() {
+  $('bnAdmin').addEventListener('click', openAdmin);
+  $('closeAdmin').addEventListener('click', closeAdmin);
+  $('adminOverlay').addEventListener('click', e => {
+    if (e.target === $('adminOverlay')) closeAdmin();
+  });
 
+  // Tabs
+  $$('.admin-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      $$('.admin-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const tabId = tab.dataset.tab;
+      $$('.admin-tab-content').forEach(c => c.style.display = 'none');
+      $(`tab-${tabId}`).style.display = 'block';
+      if (tabId === 'products') renderAdminProducts();
+    });
+  });
+
+  // Add product
+  $('addProductBtn').addEventListener('click', addProduct);
+}
+
+function openAdmin() {
+  $('adminOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  renderAdminOrders();
+}
+
+function closeAdmin() {
+  $('adminOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+async function renderAdminOrders() {
+  const list = $('adminOrdersList');
+  try {
+    const res = await fetch(`${API_BASE}/orders`);
+    const data = await res.json();
+
+    if (!data.orders || data.orders.length === 0) {
+      list.innerHTML = '<p class="empty-admin">No orders yet.</p>';
+      return;
+    }
+
+    list.innerHTML = '';
+    [...data.orders].reverse().forEach(order => {
+      const card = document.createElement('div');
+      card.className = 'admin-order-card';
+      card.innerHTML = `
+        <div class="admin-order-top">
+          <span class="admin-order-id">${order.id}</span>
+          <span class="admin-order-total">$${parseFloat(order.total).toFixed(2)}</span>
+        </div>
+        <div class="admin-order-name">👤 ${order.name} · 📍 ${order.address.substring(0,30)}${order.address.length > 30 ? '...' : ''}</div>
+        <div class="admin-order-controls">
+          <select class="status-select" id="sel-${order.id}">
+            <option ${order.status === 'Processing' ? 'selected' : ''}>Processing</option>
+            <option ${order.status === 'On the way' ? 'selected' : ''}>On the way</option>
+            <option ${order.status === 'Delivered' ? 'selected' : ''}>Delivered</option>
+          </select>
+          <button class="update-status-btn" onclick="updateOrderStatus('${order.id}')">Update</button>
+          <button class="delete-order-btn" onclick="deleteOrder('${order.id}')">🗑️</button>
+        </div>
+      `;
+      list.appendChild(card);
+    });
+  } catch (err) {
+    list.innerHTML = '<p class="empty-admin">Could not load orders. Start the backend server.</p>';
+  }
+}
+
+async function updateOrderStatus(orderId) {
+  const status = $(`sel-${orderId}`)?.value;
+  if (!status) return;
+
+  try {
+    await fetch(`${API_BASE}/orders/${orderId}/status`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ status })
+    });
+    showToast(`✅ Status updated to "${status}"`);
+    renderAdminOrders();
+  } catch (err) {
+    showToast('❌ Failed to update status');
+  }
+}
+
+async function deleteOrder(orderId) {
+  if (!confirm(`Delete order ${orderId}?`)) return;
+  try {
+    await fetch(`${API_BASE}/orders/${orderId}`, { method: 'DELETE' });
+    showToast('🗑️ Order deleted');
+    renderAdminOrders();
+  } catch (err) {
+    showToast('❌ Failed to delete order');
+  }
+}
+
+function renderAdminProducts() {
+  const list = $('adminProductsList');
+  list.innerHTML = '';
+  productsData.forEach(p => {
+    const row = document.createElement('div');
+    row.className = 'admin-product-row';
+    row.innerHTML = `
+      <img class="admin-product-img" src="${p.image}" alt="${p.name}" onerror="this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?w=100&q=80'" />
+      <div class="admin-product-info">
+        <strong>${p.name}</strong>
+        <small>$${p.price.toFixed(2)} · ${p.unit} · ${p.category}</small>
+      </div>
+      <button class="delete-product-btn" onclick="deleteProduct('${p.id}')">Remove</button>
+    `;
+    list.appendChild(row);
+  });
+}
+
+async function addProduct() {
+  const name = $('ap-name').value.trim();
+  const price = parseFloat($('ap-price').value);
+  const unit = $('ap-unit').value.trim();
+  const category = $('ap-cat').value.trim();
+  const image = $('ap-img').value.trim();
+
+  if (!name || !price || !unit || !category) {
+    showToast('⚠️ Please fill all required fields');
+    return;
+  }
+
+  const product = {
+    name, price, unit, category,
+    image: image || 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=400&q=80',
+    badge: null, badgeColor: null
+  };
+
+  try {
+    const res = await fetch(`${API_BASE}/admin/products`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(product)
+    });
+    const data = await res.json();
+    if (data.success) {
+      productsData.push(data.product);
+      showToast('✅ Product added successfully!');
+      ['ap-name','ap-price','ap-unit','ap-cat','ap-img'].forEach(id => $(id).value = '');
+      renderAdminProducts();
+      loadAllProducts();
+    }
+  } catch (err) {
+    showToast('❌ Could not connect to backend');
+  }
+}
+
+async function deleteProduct(productId) {
+  if (!confirm('Remove this product?')) return;
+  try {
+    await fetch(`${API_BASE}/admin/products/${productId}`, { method: 'DELETE' });
+    productsData = productsData.filter(p => p.id !== productId);
+    showToast('🗑️ Product removed');
+    renderAdminProducts();
+    loadAllProducts();
+  } catch (err) {
+    showToast('❌ Failed to remove product');
+  }
+}
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // BOTTOM NAV
@@ -984,60 +1161,12 @@ function initBottomNav() {
     setActiveNav('bnHome');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
-
-  $('bnTrack').addEventListener('click', () => {
-    setActiveNav('bnTrack');
-    // tu peux ouvrir track ici si besoin
-  });
-
-  $('bnCart').addEventListener('click', () => {
-    setActiveNav('bnCart');
-    openCart();
-  });
-
-  $('bnProfile').addEventListener('click', () => {
-    setActiveNav('bnProfile');
-    openProfile();
-  });
 }
 
 function setActiveNav(activeId) {
-  ['bnHome','bnTrack','bnCart','bnProfile'].forEach(id => {
+  ['bnHome','bnTrack','bnCart','bnAdmin'].forEach(id => {
     $(id).classList.toggle('active', id === activeId);
   });
-}
-
-// ═══════════════════════════════════════════════════════════════════════════════
-// PROFILE (NEW SYSTEM)
-// ═══════════════════════════════════════════════════════════════════════════════
-function initProfile() {
-  if ($('bnProfile')) {
-    $('bnProfile').addEventListener('click', openProfile);
-  }
-
-  if ($('closeProfile')) {
-    $('closeProfile').addEventListener('click', closeProfile);
-  }
-
-  if ($('profileOverlay')) {
-    $('profileOverlay').addEventListener('click', e => {
-      if (e.target === $('profileOverlay')) closeProfile();
-    });
-  }
-}
-
-function openProfile() {
-  const overlay = $('profileOverlay');
-  if (!overlay) return;
-  overlay.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeProfile() {
-  const overlay = $('profileOverlay');
-  if (!overlay) return;
-  overlay.classList.remove('active');
-  document.body.style.overflow = '';
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
