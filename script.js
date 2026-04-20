@@ -10,7 +10,10 @@ const WHATSAPP_NUMBER = '1234567890'; // Replace with your WhatsApp number (no +
 // ─── State ────────────────────────────────────────────────────────────────────
 let cart = {};           // { productId: { ...product, qty } }
 let productsData = [];   // All products from JSON
-let categoriesData = []; // All categories from JSON
+let categoriesData = [];
+
+// All categories from JSON
+
 
 
 
@@ -306,6 +309,7 @@ const data = {
 
 
 
+
 let lastOrderId = null;  // Most recent order ID
 let bannerInterval;      // Auto-slide interval
 let currentBanner = 0;
@@ -333,26 +337,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 // LOAD PRODUCTS FROM SERVER / JSON
 // ═══════════════════════════════════════════════════════════════════════════════
 async function loadProducts() {
-  try {
-    const res = await fetch(`${API_BASE}/products`);
-    const data = await res.json();
-    productsData = data.products;
-    categoriesData = data.categories;
-    renderCategories(data.categories);
-    renderProducts(data.products);
-  } catch (err) {
-    // Fallback: load from products.json directly (for static serving)
-    try {
-      const res = await fetch('./products.json');
-      const data = await res.json();
-      productsData = data.products;
-      categoriesData = data.categories;
-      renderCategories(data.categories);
-      renderProducts(data.products);
-    } catch (e) {
-      console.error('Failed to load products:', e);
-    }
-  }
+  productsData = data.products;
+  categoriesData = data.categories;
+
+  renderCategories(categoriesData);
+  renderProducts(productsData);
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
