@@ -69,7 +69,7 @@ const data = {
       "id": "snicker",
       "name": "Snickers",
       "emoji": "😋",
-      "image": "https://i.pinimg.com/736x/c2/63/46/c263467d743cb8c8df178326d01fb830.jpg"
+      "image": "https://i.pinimg.com/736x/c2/63/46/c263467d743cb8c8df178326d01fb830.jpg",
     },
     {
       "id": "beverages",
@@ -331,6 +331,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   initAdmin();
   initBottomNav();
   loadCartFromStorage();
+  initAdmin();
 });
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -974,6 +975,83 @@ function initBanner() {
 // ═══════════════════════════════════════════════════════════════════════════════
 // ADMIN PANEL
 // ═══════════════════════════════════════════════════════════════════════════════
+
+
+
+
+function initAdmin() {
+  $('bnAdmin').addEventListener('click', openAdmin);
+  $('closeAdmin').addEventListener('click', closeAdmin);
+
+  $('adminOverlay').addEventListener('click', e => {
+    if (e.target === $('adminOverlay')) closeAdmin();
+  });
+}
+
+function openAdmin() {
+  $('adminOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  renderProfile();
+}
+
+function closeAdmin() {
+  $('adminOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function renderProfile() {
+  const container = $('adminOrdersList');
+
+  const name = localStorage.getItem('user_name') || '';
+  const address = localStorage.getItem('user_address') || '';
+
+  container.innerHTML = `
+    <div class="form-group">
+      <label>Full Name</label>
+      <input type="text" id="profileName" value="${name}" placeholder="Enter your name">
+    </div>
+
+    <div class="form-group">
+      <label>Address</label>
+      <textarea id="profileAddress" rows="2">${address}</textarea>
+    </div>
+
+    <button class="checkout-btn" onclick="saveProfile()">
+      💾 Save Profile
+    </button>
+  `;
+}
+
+function saveProfile() {
+  const name = $('profileName').value.trim();
+  const address = $('profileAddress').value.trim();
+
+  if (!name || !address) {
+    showToast('⚠️ Fill all fields');
+    return;
+  }
+
+  localStorage.setItem('user_name', name);
+  localStorage.setItem('user_address', address);
+
+  showToast('✅ Profile saved');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // ═══════════════════════════════════════════════════════════════════════════════
