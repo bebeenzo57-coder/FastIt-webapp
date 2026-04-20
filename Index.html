@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>FastIt — Groceries in Minutes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     TOP NAVIGATION BAR
+════════════════════════════════════════════ -->
+<header class="header" id="header">
+  <div class="header-inner">
+    <!-- Logo -->
+    <div class="logo">
+      <span class="logo-text">Fast<span class="logo-accent">It</span></span>
+      <span class="logo-badge">⚡</span>
+    </div>
+
+    <!-- Location Pill -->
+    <div class="location-pill">
+      <span class="loc-icon">📍</span>
+      <span class="loc-text">Deliver to <strong>My Location</strong></span>
+      <span class="loc-arrow">▾</span>
+    </div>
+
+    <!-- Nav Icons -->
+    <div class="header-actions">
+      <button class="icon-btn" id="trackNavBtn" title="Track Order">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+      </button>
+      <button class="icon-btn cart-icon-btn" id="cartBtn" title="Cart">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="search-wrap">
+    <div class="search-bar">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="Search for groceries, snacks, drinks..." autocomplete="off" />
+      <button class="search-clear" id="searchClear">✕</button>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════
+     MAIN CONTENT
+════════════════════════════════════════════ -->
+<main class="main-content" id="mainContent">
+
+  <!-- ── PROMO BANNER ─────────────────────── -->
+  <section class="banner-section">
+    <div class="banner-track" id="bannerTrack">
+
+      <div class="banner-slide banner-green">
+        <div class="banner-text">
+          <p class="banner-tag">⚡ Lightning Fast</p>
+          <h2 class="banner-title">Groceries in<br><span>10 Minutes</span></h2>
+          <p class="banner-sub">Fresh from local stores to your door</p>
+          <button class="banner-btn" onclick="document.getElementById('productsSection').scrollIntoView({behavior:'smooth'})">Order Now →</button>
+        </div>
+        <div class="banner-img">
+          <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=300&q=80" alt="Groceries" />
+        </div>
+      </div>
+
+      <div class="banner-slide banner-orange">
+        <div class="banner-text">
+          <p class="banner-tag">🎉 Special Offer</p>
+          <h2 class="banner-title">Free Delivery<br><span>Today Only!</span></h2>
+          <p class="banner-sub">On all orders above $15</p>
+          <button class="banner-btn" onclick="document.getElementById('productsSection').scrollIntoView({behavior:'smooth'})">Shop Now →</button>
+        </div>
+        <div class="banner-img">
+          <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=300&q=80" alt="Delivery" />
+        </div>
+      </div>
+
+      <div class="banner-slide banner-purple">
+        <div class="banner-text">
+          <p class="banner-tag">🥗 Fresh Daily</p>
+          <h2 class="banner-title">Farm Fresh<br><span>Produce</span></h2>
+          <p class="banner-sub">Handpicked every morning</p>
+          <button class="banner-btn" onclick="document.getElementById('productsSection').scrollIntoView({behavior:'smooth'})">Explore →</button>
+        </div>
+        <div class="banner-img">
+          <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=300&q=80" alt="Produce" />
+        </div>
+      </div>
+
+    </div>
+    <!-- Banner Dots -->
+    <div class="banner-dots" id="bannerDots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </section>
+
+  <!-- ── QUICK STATS ──────────────────────── -->
+  <div class="stats-strip">
+    <div class="stat-item">
+      <span class="stat-icon">⚡</span>
+      <div><strong>10 min</strong><small>Avg delivery</small></div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-icon">🛒</span>
+      <div><strong>500+</strong><small>Products</small></div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-icon">⭐</span>
+      <div><strong>4.9</strong><small>Rating</small></div>
+    </div>
+  </div>
+
+  <!-- ── CATEGORIES ───────────────────────── -->
+  <section class="section">
+    <div class="section-header">
+      <h3 class="section-title">Browse Categories</h3>
+    </div>
+    <div class="categories-scroll" id="categoriesContainer">
+      <!-- Populated by JS -->
+    </div>
+  </section>
+
+  <!-- ── PRODUCTS GRID ─────────────────────── -->
+  <section class="section" id="productsSection">
+    <div class="section-header">
+      <h3 class="section-title" id="productsTitle">All Products</h3>
+      <button class="see-all-btn" id="clearFilterBtn" style="display:none;" onclick="loadAllProducts()">✕ Clear</button>
+    </div>
+    <div class="products-grid" id="productsGrid">
+      <!-- Populated by JS -->
+    </div>
+    <div class="empty-state" id="emptyState" style="display:none;">
+      <p>😕</p>
+      <h4>No products found</h4>
+      <p>Try a different search or category</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ══════════════════════════════════════════
+     CART DRAWER
+════════════════════════════════════════════ -->
+<div class="drawer-overlay" id="drawerOverlay"></div>
+
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="drawer-header">
+    <div>
+      <h3>Your Cart 🛒</h3>
+      <p id="cartItemCount">0 items</p>
+    </div>
+    <button class="close-btn" id="closeCart">✕</button>
+  </div>
+
+  <!-- Cart Items -->
+  <div class="cart-items" id="cartItems">
+    <!-- Empty state -->
+    <div class="cart-empty" id="cartEmpty">
+      <div class="cart-empty-icon">🛒</div>
+      <h4>Your cart is empty</h4>
+      <p>Add some fresh groceries to get started!</p>
+    </div>
+  </div>
+
+  <!-- Cart Footer -->
+  <div class="cart-footer" id="cartFooter" style="display:none;">
+    <div class="price-breakdown">
+      <div class="price-row">
+        <span>Subtotal</span>
+        <span id="subtotalAmt">$0.00</span>
+      </div>
+      <div class="price-row">
+        <span>Delivery</span>
+        <span class="free-tag">FREE</span>
+      </div>
+      <div class="price-row total-row">
+        <strong>Total</strong>
+        <strong id="totalAmt">$0.00</strong>
+      </div>
+    </div>
+    <button class="checkout-btn" id="checkoutBtn">
+      Proceed to Checkout →
+    </button>
+  </div>
+</aside>
+
+<!-- ══════════════════════════════════════════
+     CHECKOUT MODAL
+════════════════════════════════════════════ -->
+<div class="modal-overlay" id="checkoutOverlay">
+  <div class="modal" id="checkoutModal">
+    <div class="modal-header">
+      <h3>🎯 Checkout</h3>
+      <button class="close-btn" id="closeCheckout">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <!-- Order Summary -->
+      <div class="checkout-summary" id="checkoutSummary">
+        <!-- Filled by JS -->
+      </div>
+
+      <!-- Delivery Details -->
+      <div class="form-section">
+        <h4 class="form-section-title">📦 Delivery Details</h4>
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="custName" placeholder="e.g. John Doe" />
+        </div>
+        <div class="form-group">
+          <label>Delivery Address</label>
+          <textarea id="custAddress" placeholder="Enter your full delivery address..." rows="2"></textarea>
+        </div>
+      </div>
+
+      <!-- Payment Method -->
+      <div class="form-section">
+        <h4 class="form-section-title">💳 Payment Method</h4>
+        <div class="payment-options">
+          <label class="payment-opt" id="payOptCOD">
+            <input type="radio" name="payment" value="cash_on_delivery" checked />
+            <div class="pay-opt-inner">
+              <span class="pay-icon">💵</span>
+              <div>
+                <strong>Cash on Delivery</strong>
+                <small>Pay when you receive</small>
+              </div>
+            </div>
+          </label>
+          <label class="payment-opt" id="payOptMM">
+            <input type="radio" name="payment" value="mobile_money" />
+            <div class="pay-opt-inner">
+              <span class="pay-icon">📱</span>
+              <div>
+                <strong>Mobile Money</strong>
+                <small>Orange Money / MoMo</small>
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <!-- Transaction ID (Mobile Money only) -->
+        <div class="form-group" id="txnIdGroup" style="display:none;">
+          <label>Transaction ID</label>
+          <input type="text" id="txnId" placeholder="Enter your transaction ID" />
+          <small class="form-hint">Send payment to: <strong>+1 234 567 8900</strong> then enter the transaction ID above.</small>
+        </div>
+      </div>
+
+      <!-- Place Order Button -->
+      <button class="place-order-btn" id="placeOrderBtn">
+        <span>🚀 Place Order</span>
+      </button>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     ORDER SUCCESS MODAL
+════════════════════════════════════════════ -->
+<div class="modal-overlay" id="successOverlay">
+  <div class="modal modal-sm">
+    <div class="success-content">
+      <div class="success-anim">🎉</div>
+      <h3>Order Placed!</h3>
+      <p>Your order has been received and is being prepared.</p>
+      <div class="order-id-box">
+        <small>Your Order ID</small>
+        <strong id="displayOrderId">FST-1001</strong>
+      </div>
+      <div class="success-actions">
+        <button class="wa-btn" id="whatsappBtn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Share on WhatsApp
+        </button>
+        <button class="track-link-btn" id="trackOrderLink">
+          📦 Track My Order
+        </button>
+      </div>
+      <button class="continue-btn" id="continueShopping">Continue Shopping</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     ORDER TRACKING PANEL
+════════════════════════════════════════════ -->
+<div class="modal-overlay" id="trackOverlay">
+  <div class="modal modal-sm">
+    <div class="modal-header">
+      <h3>📦 Track Order</h3>
+      <button class="close-btn" id="closeTrack">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Enter Your Order ID</label>
+        <div class="track-input-row">
+          <input type="text" id="trackOrderId" placeholder="e.g. FST-1001" />
+          <button class="track-search-btn" id="trackSearchBtn">Track</button>
+        </div>
+      </div>
+
+      <div class="track-result" id="trackResult" style="display:none;">
+        <div class="track-order-info">
+          <span id="trackOrderName"></span>
+          <span id="trackOrderTotal"></span>
+        </div>
+        <div class="track-status-bar">
+          <div class="track-step" id="step-processing">
+            <div class="step-dot"></div>
+            <div class="step-label">Processing</div>
+          </div>
+          <div class="track-line" id="line-1"></div>
+          <div class="track-step" id="step-onway">
+            <div class="step-dot"></div>
+            <div class="step-label">On the way</div>
+          </div>
+          <div class="track-line" id="line-2"></div>
+          <div class="track-step" id="step-delivered">
+            <div class="step-dot"></div>
+            <div class="step-label">Delivered</div>
+          </div>
+        </div>
+        <div class="track-status-text" id="trackStatusText"></div>
+      </div>
+
+      <div class="track-error" id="trackError" style="display:none;">
+        <p>❌ Order not found. Please check your Order ID.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     ADMIN PANEL
+════════════════════════════════════════════ -->
+<div class="modal-overlay" id="adminOverlay">
+  <div class="modal modal-wide">
+    <div class="modal-header">
+      <h3>⚙️ Admin Panel</h3>
+      <button class="close-btn" id="closeAdmin">✕</button>
+    </div>
+    <div class="modal-body">
+      <!-- Tabs -->
+      <div class="admin-tabs">
+        <button class="admin-tab active" data-tab="orders">📋 Orders</button>
+        <button class="admin-tab" data-tab="products">📦 Products</button>
+      </div>
+
+      <!-- Orders Tab -->
+      <div class="admin-tab-content" id="tab-orders">
+        <div id="adminOrdersList" class="admin-list">
+          <p class="empty-admin">No orders yet.</p>
+        </div>
+      </div>
+
+      <!-- Products Tab -->
+      <div class="admin-tab-content" id="tab-products" style="display:none;">
+        <div class="add-product-form">
+          <h4>Add New Product</h4>
+          <div class="admin-form-grid">
+            <div class="form-group"><label>Product Name</label><input type="text" id="ap-name" placeholder="Product name" /></div>
+            <div class="form-group"><label>Price ($)</label><input type="number" id="ap-price" placeholder="0.00" step="0.01" /></div>
+            <div class="form-group"><label>Unit</label><input type="text" id="ap-unit" placeholder="e.g. 1kg, 500g" /></div>
+            <div class="form-group"><label>Category ID</label><input type="text" id="ap-cat" placeholder="e.g. fruits, dairy" /></div>
+            <div class="form-group form-full"><label>Image URL</label><input type="text" id="ap-img" placeholder="https://..." /></div>
+          </div>
+          <button class="add-product-btn" id="addProductBtn">+ Add Product</button>
+        </div>
+        <div id="adminProductsList" class="admin-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     STICKY CART BUTTON (Mobile)
+════════════════════════════════════════════ -->
+<div class="sticky-cart" id="stickyCart" style="display:none;">
+  <button class="sticky-cart-btn" id="stickyCartBtn">
+    <div class="sticky-cart-left">
+      <span class="sc-badge" id="scBadge">0</span>
+      <span>View Cart</span>
+    </div>
+    <div class="sticky-cart-right">
+      <span id="scTotal">$0.00</span>
+      <span>→</span>
+    </div>
+  </button>
+</div>
+
+<!-- ══════════════════════════════════════════
+     BOTTOM NAV (Mobile)
+════════════════════════════════════════════ -->
+<nav class="bottom-nav">
+  <button class="bottom-nav-item active" id="bnHome">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Home</span>
+  </button>
+  <button class="bottom-nav-item" id="bnTrack">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+    <span>Track</span>
+  </button>
+  <button class="bottom-nav-item" id="bnCart">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+    <span>Cart</span>
+  </button>
+  <button class="bottom-nav-item" id="bnAdmin">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 10-16 0"/></svg>
+    <span>Admin</span>
+  </button>
+</nav>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

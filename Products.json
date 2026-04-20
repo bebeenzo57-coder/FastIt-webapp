@@ -1,0 +1,221 @@
+
+const data = {
+  "categories": [
+    {
+      "id": "fruits",
+      "name": "Fruits & Veggies",
+      "emoji": "🥦",
+      "image": "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=200&q=80"
+    },
+    {
+      "id": "dairy",
+      "name": "Dairy & Eggs",
+      "emoji": "🥛",
+      "image": "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=200&q=80"
+    },
+    {
+      "id": "bakery",
+      "name": "Bakery",
+      "emoji": "🥖",
+      "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&q=80"
+    },
+    {
+      "id": "snacks",
+      "name": "Snacks",
+      "emoji": "🍿",
+      "image": "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=200&q=80"
+    },
+    {
+      "id": "snicker",
+      "name": "Snickers",
+      "emoji": "😋",
+      "image": "https://pin.it/5vJkcxvt9"
+    },
+    {
+      "id": "beverages",
+      "name": "Beverages",
+      "emoji": "🧃",
+      "image": "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=200&q=80"
+    },
+    {
+      "id": "meat",
+      "name": "Meat & Fish",
+      "emoji": "🥩",
+      "image": "https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=200&q=80"
+    },
+    {
+      "id": "frozen",
+      "name": "Frozen Foods",
+      "emoji": "🧊",
+      "image": "https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?w=200&q=80"
+    },
+    {
+      "id": "household",
+      "name": "Household",
+      "emoji": "🧹",
+      "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=200&q=80"
+    }
+  ],
+  "products": [
+    {
+      "id": "p1",
+      "name": "Fresh Bananas",
+      "category": "fruits",
+      "price": 1.99,
+      "unit": "bunch",
+      "image": "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&q=80",
+      "badge": "Popular",
+      "badgeColor": "#22c55e"
+    },
+    {
+      "id": "p2",
+      "name": "Organic Tomatoes",
+      "category": "fruits",
+      "price": 2.49,
+      "unit": "500g",
+      "image": "https://images.unsplash.com/photo-1546094096-0df4bcaaa337?w=400&q=80",
+      "badge": "Organic",
+      "badgeColor": "#22c55e"
+    },
+    {
+      "id": "p3",
+      "name": "Green Spinach",
+      "category": "fruits",
+      "price": 1.79,
+      "unit": "250g",
+      "image": "https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=400&q=80",
+      "badge": null,
+      "badgeColor": null
+    },
+    {
+      "id": "p4",
+      "name": "Red Apples",
+      "category": "fruits",
+      "price": 3.29,
+      "unit": "1kg",
+      "image": "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=400&q=80",
+      "badge": "Fresh",
+      "badgeColor": "#f97316"
+    },
+    {
+      "id": "p5",
+      "name": "Full Cream Milk",
+      "category": "dairy",
+      "price": 2.99,
+      "unit": "1L",
+      "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
+      "badge": "Popular",
+      "badgeColor": "#22c55e"
+    },
+    {
+      "id": "p6",
+      "name": "Farm Eggs",
+      "category": "dairy",
+      "price": 4.49,
+      "unit": "12 pcs",
+      "image": "https://images.unsplash.com/photo-1587486913049-53fc88980cfc?w=400&q=80",
+      "badge": null,
+      "badgeColor": null
+    },
+    {
+      "id": "p7",
+      "name": "Greek Yogurt",
+      "category": "dairy",
+      "price": 3.19,
+      "unit": "400g",
+      "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&q=80",
+      "badge": "New",
+      "badgeColor": "#8b5cf6"
+    },
+    {
+      "id": "p8",
+      "name": "Cheddar Cheese",
+      "category": "dairy",
+      "price": 5.99,
+      "unit": "200g",
+      "image": "https://images.unsplash.com/photo-1618164435735-413d3b066c9a?w=400&q=80",
+      "badge": null,
+      "badgeColor": null
+    },
+    {
+      "id": "p9",
+      "name": "Sourdough Bread",
+      "category": "bakery",
+      "price": 3.49,
+      "unit": "loaf",
+      "image": "https://images.unsplash.com/photo-1585478259715-876acc5be8eb?w=400&q=80",
+      "badge": "Artisan",
+      "badgeColor": "#f97316"
+    },
+    {
+      "id": "p10",
+      "name": "Croissants",
+      "category": "bakery",
+      "price": 4.99,
+      "unit": "4 pcs",
+      "image": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=400&q=80",
+      "badge": "Popular",
+      "badgeColor": "#22c55e"
+    },
+    {
+      "id": "p11",
+      "name": "Potato Chips",
+      "category": "snacks",
+      "price": 2.29,
+      "unit": "150g",
+      "image": "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=400&q=80",
+      "badge": null,
+      "badgeColor": null
+    },
+    {
+      "id": "p12",
+      "name": "Trail Mix",
+      "category": "snacks",
+      "price": 4.79,
+      "unit": "200g",
+      "image": "https://images.unsplash.com/photo-1583277793374-b8e96e75d1dc?w=400&q=80",
+      "badge": "Healthy",
+      "badgeColor": "#22c55e"
+    },
+    {
+      "id": "p13",
+      "name": "Orange Juice",
+      "category": "beverages",
+      "price": 3.59,
+      "unit": "1L",
+      "image": "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=400&q=80",
+      "badge": "Fresh",
+      "badgeColor": "#f97316"
+    },
+    {
+      "id": "p14",
+      "name": "Sparkling Water",
+      "category": "beverages",
+      "price": 1.49,
+      "unit": "500ml",
+      "image": "https://images.unsplash.com/photo-1523362628745-0c100150b504?w=400&q=80",
+      "badge": null,
+      "badgeColor": null
+    },
+    {
+      "id": "p15",
+      "name": "Chicken Breast",
+      "category": "meat",
+      "price": 7.99,
+      "unit": "500g",
+      "image": "https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=400&q=80",
+      "badge": "Fresh",
+      "badgeColor": "#f97316"
+    },
+    {
+      "id": "p16",
+      "name": "Salmon Fillet",
+      "category": "meat",
+      "price": 12.99,
+      "unit": "300g",
+      "image": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&q=80",
+      "badge": "Premium",
+      "badgeColor": "#8b5cf6"
+    }
+  ]
+};
