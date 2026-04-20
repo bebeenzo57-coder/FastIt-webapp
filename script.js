@@ -332,6 +332,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   initBottomNav();
   loadCartFromStorage();
   initAdmin();
+  renderWelcomeUser();
 });
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -1025,7 +1026,7 @@ function renderProfile() {
 function saveProfile() {
   const name = $('profileName').value.trim();
   const address = $('profileAddress').value.trim();
-
+renderWelcomeUser();
   if (!name || !address) {
     showToast('⚠️ Fill all fields');
     return;
@@ -1080,4 +1081,17 @@ function showToast(msg) {
   toast.classList.add('show');
   clearTimeout(toastTimeout);
   toastTimeout = setTimeout(() => toast.classList.remove('show'), 2500);
+}
+
+// GREET USER
+function renderWelcomeUser() {
+  const name = localStorage.getItem('user_name');
+  const el = $('welcomeUser');
+
+  if (!name) {
+    el.innerHTML = '';
+    return;
+  }
+
+  el.innerHTML = `Welcome, <strong>${name}</strong> 👋`;
 }
