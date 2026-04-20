@@ -62,7 +62,7 @@
       <div class="banner-slide banner-green">
         <div class="banner-text">
           <p class="banner-tag">⚡ Lightning Fast</p>
-          <h2 class="banner-title">Groceries in<br><span>20 Minutes</span></h2>
+          <h2 class="banner-title">Groceries in<br><span>10 Minutes</span></h2>
           <p class="banner-sub">Fresh from local stores to your door</p>
           <button class="banner-btn" onclick="document.getElementById('productsSection').scrollIntoView({behavior:'smooth'})">Order Now →</button>
         </div>
@@ -108,7 +108,7 @@
   <div class="stats-strip">
     <div class="stat-item">
       <span class="stat-icon">⚡</span>
-      <div><strong>15 min</strong><small>Avg delivery</small></div>
+      <div><strong>10 min</strong><small>Avg delivery</small></div>
     </div>
     <div class="stat-divider"></div>
     <div class="stat-item">
@@ -347,7 +347,22 @@
 <!-- ══════════════════════════════════════════
      ADMIN PANEL
 ════════════════════════════════════════════ -->
+<div class="modal-overlay" id="adminOverlay">
+  <div class="modal modal-sm">
+    <div class="modal-header">
+      <h3>👤 My Profile</h3>
+      <button class="close-btn" id="closeAdmin">✕</button>
+    </div>
 
+    <div class="modal-body">
+      
+      <div id="adminOrdersList">
+        <!-- Le profil sera injecté ici -->
+      </div>
+
+    </div>
+  </div>
+</div>
 
 <!-- ══════════════════════════════════════════
      STICKY CART BUTTON (Mobile)
@@ -385,7 +400,6 @@
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 10-16 0"/></svg>
     <span>Profil</span>
   </button>
-  
 </nav>
 
 <!-- Toast -->
