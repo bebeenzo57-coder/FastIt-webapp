@@ -1518,5 +1518,15 @@ input, textarea { font-family: var(--font); }
   color: #00c853;
   font-weight: 600;
 }
+.welcome-user {
+  font-size: 13px;
+  color: #666;
+  margin-top: 2px;
+  margin-left: 2px;
+}
+
+.welcome-user strong {
+  color: #111;
+}
 
 
