@@ -1506,3 +1506,14 @@ input, textarea { font-family: var(--font); }
   .bottom-nav { max-width: 480px; left: 50%; transform: translateX(-50%); }
   .products-grid { grid-template-columns: repeat(2, 1fr); }
 }
+/*GREAT THE USER*/
+.welcome-user {
+  font-size: 13px;
+  color: #666;
+  margin-top: 2px;
+  margin-left: 2px;
+}
+
+.welcome-user strong {
+  color: #111;
+}
