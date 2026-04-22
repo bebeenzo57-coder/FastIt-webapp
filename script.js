@@ -601,13 +601,26 @@ function updateCartUI() {
   const totalQty = items.reduce((sum, i) => sum + i.qty, 0);
   const totalPrice = items.reduce((sum, i) => sum + i.price * i.qty, 0);
 
+
+  const fees = calculateFees(totalPrice);
+
+
+  if ($('tax')) $('tax').textContent = fees.tax;
+if ($('logistics')) $('logistics').textContent = fees.logisticsFee;
+if ($('delivery')) $('delivery').textContent = fees.deliveryFee;
+
+const finalTotal = totalPrice 
+  + fees.deliveryFee 
+  + fees.logisticsFee 
+  + fees.tax;
+
   // Update badges
   $('cartBadge').textContent = totalQty;
   $('scBadge').textContent = totalQty;
   $('scTotal').textContent = `$${totalPrice.toFixed(2)}`;
   $('cartItemCount').textContent = `${totalQty} item${totalQty !== 1 ? 's' : ''}`;
   $('subtotalAmt').textContent = `$${totalPrice.toFixed(2)}`;
-  $('totalAmt').textContent = `$${totalPrice.toFixed(2)}`;
+  $('totalAmt').textContent = `$${finalTotal.toFixed(2)}`;
 
   // Sticky cart
   $('stickyCart').style.display = totalQty > 0 ? 'block' : 'none';
