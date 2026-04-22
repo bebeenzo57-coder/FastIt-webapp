@@ -562,6 +562,40 @@ function removeFromCart(productId) {
   updateProductCard(productId);
 }
 
+
+
+
+
+function calculateFees(cartTotal) {
+    let deliveryFee = 0;
+    let logisticsFee = 0;
+    const tax = 75;
+
+    if (cartTotal < 2000) {
+        deliveryFee = 1000;
+        logisticsFee = 300;
+    } else if (cartTotal <= 5000) {
+        deliveryFee = 700;
+        logisticsFee = 200;
+    } else {
+        deliveryFee = 500;
+        logisticsFee = 100;
+    }
+
+    return {
+        deliveryFee,
+        logisticsFee,
+        tax
+    };
+}
+
+
+
+
+
+
+
+
 function updateCartUI() {
   const items = Object.values(cart);
   const totalQty = items.reduce((sum, i) => sum + i.qty, 0);
@@ -612,6 +646,14 @@ function updateCartUI() {
     `;
     cartItemsEl.appendChild(el);
   });
+
+
+
+$('tax').textContent = `$${fees.tax.toFixed(2)}`;
+$('logistics').textContent = `$${fees.logisticsFee.toFixed(2)}`;
+$('delivery').textContent = `$${fees.deliveryFee.toFixed(2)}`;
+
+  
 }
 
 function updateProductCard(productId) {
