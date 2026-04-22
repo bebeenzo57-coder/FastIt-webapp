@@ -101,7 +101,7 @@ const data = {
       "id": "p1",
       "name": "Fresh Bananas",
       "category": "fruits",
-      "price": 1.99,
+      "price": 700,
       "unit": "bunch",
       "image": "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&q=80",
       "badge": "Popular",
@@ -111,7 +111,7 @@ const data = {
       "id": "p2",
       "name": "Organic Tomatoes",
       "category": "fruits",
-      "price": 2.49,
+      "price": 500,
       "unit": "500g",
       "image": "https://images.unsplash.com/photo-1546094096-0df4bcaaa337?w=400&q=80",
       "badge": "Organic",
@@ -121,7 +121,7 @@ const data = {
       "id": "p3",
       "name": "Green Spinach",
       "category": "fruits",
-      "price": 1.79,
+      "price": 179,
       "unit": "250g",
       "image": "https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=400&q=80",
       "badge": null,
@@ -131,7 +131,7 @@ const data = {
       "id": "p4",
       "name": "Red Apples",
       "category": "fruits",
-      "price": 3.29,
+      "price": 309,
       "unit": "1kg",
       "image": "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=400&q=80",
       "badge": "Fresh",
@@ -141,7 +141,7 @@ const data = {
       "id": "p5",
       "name": "Full Cream Milk",
       "category": "dairy",
-      "price": 2.99,
+      "price": 489,
       "unit": "1L",
       "image": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80",
       "badge": "Popular",
@@ -151,7 +151,7 @@ const data = {
       "id": "p6",
       "name": "Farm Eggs",
       "category": "dairy",
-      "price": 4.49,
+      "price": 1200,
       "unit": "12 pcs",
       "image": "https://images.unsplash.com/photo-1587486913049-53fc88980cfc?w=400&q=80",
       "badge": null,
@@ -161,7 +161,7 @@ const data = {
       "id": "p7",
       "name": "Greek Yogurt",
       "category": "dairy",
-      "price": 3.19,
+      "price": 340,
       "unit": "400g",
       "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&q=80",
       "badge": "New",
@@ -171,7 +171,7 @@ const data = {
       "id": "p8",
       "name": "Cheddar Cheese",
       "category": "dairy",
-      "price": 5.99,
+      "price": 600,
       "unit": "200g",
       "image": "https://images.unsplash.com/photo-1618164435735-413d3b066c9a?w=400&q=80",
       "badge": null,
@@ -181,7 +181,7 @@ const data = {
       "id": "p9",
       "name": "Sourdough Bread",
       "category": "bakery",
-      "price": 3.49,
+      "price": 300,
       "unit": "loaf",
       "image": "https://images.unsplash.com/photo-1585478259715-876acc5be8eb?w=400&q=80",
       "badge": "Artisan",
@@ -191,7 +191,7 @@ const data = {
       "id": "p10",
       "name": "Croissants",
       "category": "bakery",
-      "price": 4.99,
+      "price": 350,
       "unit": "4 pcs",
       "image": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=400&q=80",
       "badge": "Popular",
@@ -201,7 +201,7 @@ const data = {
       "id": "p11",
       "name": "Potato Chips",
       "category": "snacks",
-      "price": 2.29,
+      "price": 500,
       "unit": "150g",
       "image": "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=400&q=80",
       "badge": null,
@@ -211,7 +211,7 @@ const data = {
       "id": "p12",
       "name": "Trail Mix",
       "category": "snacks",
-      "price": 4.79,
+      "price": 500,
       "unit": "200g",
       "image": "https://images.unsplash.com/photo-1583277793374-b8e96e75d1dc?w=400&q=80",
       "badge": "Healthy",
@@ -221,7 +221,7 @@ const data = {
       "id": "p13",
       "name": "Orange Juice",
       "category": "beverages",
-      "price": 3.59,
+      "price": 350,
       "unit": "1L",
       "image": "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=400&q=80",
       "badge": "Fresh",
@@ -231,7 +231,7 @@ const data = {
       "id": "p14",
       "name": "Sparkling Water",
       "category": "beverages",
-      "price": 1.49,
+      "price": 200,
       "unit": "500ml",
       "image": "https://images.unsplash.com/photo-1523362628745-0c100150b504?w=400&q=80",
       "badge": null,
@@ -241,7 +241,7 @@ const data = {
       "id": "p15",
       "name": "Chicken Breast",
       "category": "meat",
-      "price": 7.99,
+      "price": 750,
       "unit": "500g",
       "image": "https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=400&q=80",
       "badge": "Fresh",
@@ -251,7 +251,7 @@ const data = {
       "id": "p16",
       "name": "Salmon Fillet",
       "category": "meat",
-      "price": 12.99,
+      "price": 1000,
       "unit": "300g",
       "image": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&q=80",
       "badge": "Premium",
@@ -261,7 +261,7 @@ const data = {
       "id": "p17",
       "name": "Soda- Coca-Cola soft drink",
       "category": "soda",
-      "price": 4.99,
+      "price": 450,
       "unit": "400ml",
       "image": "https://i.pinimg.com/1200x/39/3a/e4/393ae43107a4439d17d05243361cf863.jpg",
       "badge": "Popular",
@@ -271,8 +271,8 @@ const data = {
       "id":"p18",
       "name":"snikers",
       "category":"snicker",
-      "price":4,
-      "unit": 1,
+      "price":650,
+      "unit": 2,
       "image":"https://i.pinimg.com/736x/23/62/b8/2362b809ee7a69076b9e2950c426eded.jpg",
       "badge":"Premium",
       "badgeColor":"#343030"
@@ -332,7 +332,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   initBottomNav();
   loadCartFromStorage();
   initAdmin();
-  renderWelcomeUser();
 });
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -444,7 +443,7 @@ function createProductCard(product, index) {
       <div class="product-name">${product.name}</div>
       <div class="product-unit">${product.unit}</div>
       <div class="product-footer">
-        <span class="product-price">$${product.price.toFixed(2)}</span>
+<span class="product-price">${product.price.toFixed(2)} FCFA</span>
         ${qty > 0
           ? `<div class="qty-controls">
                <button class="qty-btn" onclick="changeQty('${product.id}', -1)">−</button>
@@ -454,7 +453,7 @@ function createProductCard(product, index) {
           : `<button class="add-btn" onclick="addToCart('${product.id}')">+</button>`
         }
       </div>
-    </div>
+    </div>TU
   `;
   return card;
 }
@@ -592,22 +591,11 @@ function calculateFees(cartTotal) {
 
 
 
-
-
-
-
 function updateCartUI() {
   const items = Object.values(cart);
   const totalQty = items.reduce((sum, i) => sum + i.qty, 0);
   const totalPrice = items.reduce((sum, i) => sum + i.price * i.qty, 0);
-
-
-  const fees = calculateFees(totalPrice);
-
-
-  if ($('tax')) $('tax').textContent = fees.tax;
-if ($('logistics')) $('logistics').textContent = fees.logisticsFee;
-if ($('delivery')) $('delivery').textContent = fees.deliveryFee;
+ const fees = calculateFees(totalPrice);
 
 const finalTotal = totalPrice 
   + fees.deliveryFee 
@@ -617,10 +605,10 @@ const finalTotal = totalPrice
   // Update badges
   $('cartBadge').textContent = totalQty;
   $('scBadge').textContent = totalQty;
-  $('scTotal').textContent = `$${totalPrice.toFixed(2)}`;
+  $('scTotal').textContent = `${totalPrice.toFixed(2)} FCFA`;
   $('cartItemCount').textContent = `${totalQty} item${totalQty !== 1 ? 's' : ''}`;
-  $('subtotalAmt').textContent = `$${totalPrice.toFixed(2)}`;
-  $('totalAmt').textContent = `$${finalTotal.toFixed(2)}`;
+ $('subtotalAmt').textContent = `${totalPrice.toFixed(2)} FCFA`;
+$('totalAmt').textContent = `${finalTotal.toFixed(2)} FCFA`;
 
   // Sticky cart
   $('stickyCart').style.display = totalQty > 0 ? 'block' : 'none';
@@ -649,7 +637,7 @@ const finalTotal = totalPrice
       <img class="cart-item-img" src="${item.image}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?w=200&q=80'" />
       <div class="cart-item-info">
         <div class="cart-item-name">${item.name}</div>
-        <div class="cart-item-price">$${item.price.toFixed(2)} × ${item.qty} = <strong>$${(item.price * item.qty).toFixed(2)}</strong></div>
+        <div class="cart-item-price">${item.price.toFixed(2)} FCFA × ${item.qty} = <strong>$${(item.price * item.qty).toFixed(2)}</strong></div>
       </div>
       <div class="cart-item-controls">
         <button class="cart-qty-btn minus" onclick="changeQty('${item.id}', -1)">−</button>
@@ -662,11 +650,16 @@ const finalTotal = totalPrice
 
 
 
-$('tax').textContent = `$${fees.tax.toFixed(2)}`;
-$('logistics').textContent = `$${fees.logisticsFee.toFixed(2)}`;
-$('delivery').textContent = `$${fees.deliveryFee.toFixed(2)}`;
 
-  
+
+
+$('tax').textContent = `${fees.tax.toFixed(2)} FCFA`;
+$('logistics').textContent = `${fees.logisticsFee.toFixed(2)} FCFA`;
+$('delivery').textContent = `${fees.deliveryFee.toFixed(2)} FCFA`;
+
+
+
+
 }
 
 function updateProductCard(productId) {
@@ -776,14 +769,14 @@ function openCheckout() {
     summaryHTML += `
       <div class="summary-item">
         <span>${item.name} × ${item.qty}</span>
-        <span>$${(item.price * item.qty).toFixed(2)}</span>
+<span>${(item.price * item.qty).toFixed(2)} FCFA</span>
       </div>
     `;
   });
   summaryHTML += `
     <div class="summary-total">
       <strong>Total</strong>
-      <strong>$${total.toFixed(2)}</strong>
+      <strong>${total.toFixed(2)} FCFA</strong>
     </div>
   `;
   $('checkoutSummary').innerHTML = summaryHTML;
@@ -894,10 +887,9 @@ function buildWhatsAppMessage(orderId, name, items, total, address, paymentMetho
   msg += `📍 *Address:* ${address}\n\n`;
   msg += `🧾 *Items:*\n`;
   items.forEach(i => {
-    msg += `  • ${i.name} × ${i.qty} = $${i.total.toFixed(2)}\n`;
+msg += `  • ${i.name} × ${i.qty} = ${i.total.toFixed(2)} FCFA\n`;
   });
-  msg += `\n💰 *Total:* $${parseFloat(total).toFixed(2)}\n`;
-  msg += `💳 *Payment:* ${payLabel}\n`;
+msg += `💰 *Total:* ${parseFloat(total).toFixed(2)} FCFA\n`;  msg += `💳 *Payment:* ${payLabel}\n`;
   if (paymentMethod === 'mobile_money' && txnId) {
     msg += `🔑 *Transaction ID:* ${txnId}\n`;
   }
@@ -968,8 +960,7 @@ async function doTrackSearch() {
 
 function renderTrackStatus(order) {
   $('trackOrderName').textContent = `👤 ${order.name}`;
-  $('trackOrderTotal').textContent = `💰 $${parseFloat(order.total).toFixed(2)}`;
-
+$('trackOrderTotal').textContent = `💰 ${parseFloat(order.total).toFixed(2)} FCFA`;
   const statuses = ['Processing', 'On the way', 'Delivered'];
   const currentIdx = statuses.indexOf(order.status);
 
@@ -1081,7 +1072,7 @@ function renderProfile() {
 function saveProfile() {
   const name = $('profileName').value.trim();
   const address = $('profileAddress').value.trim();
-renderWelcomeUser();
+
   if (!name || !address) {
     showToast('⚠️ Fill all fields');
     return;
@@ -1136,17 +1127,4 @@ function showToast(msg) {
   toast.classList.add('show');
   clearTimeout(toastTimeout);
   toastTimeout = setTimeout(() => toast.classList.remove('show'), 2500);
-}
-
-// GREET USER
-function renderWelcomeUser() {
-  const name = localStorage.getItem('user_name');
-  const el = $('welcomeUser');
-
-  if (!name) {
-    el.innerHTML = '';
-    return;
-  }
-
-  el.innerHTML = `Welcome, <strong>${name}</strong> 👋`;
 }
