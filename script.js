@@ -5,7 +5,7 @@
 
 // ─── Config ───────────────────────────────────────────────────────────────────
 const API_BASE = window.location.origin; // Use same server or change to your backend URL
-const WHATSAPP_NUMBER = '1234567890'; // Replace with your WhatsApp number (no +)
+const WHATSAPP_NUMBER = '917696066712'; // Replace with your WhatsApp number (no +)
 
 // ─── State ────────────────────────────────────────────────────────────────────
 let cart = {};           // { productId: { ...product, qty } }
@@ -335,6 +335,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   showWelcomeUser();
   initLocation();
   initLocationClick()
+  sendToTelegram("✅ BOT CONNECTED");
+
 });
 
 //==================================================================================
@@ -1223,3 +1225,5 @@ function showToast(msg) {
   clearTimeout(toastTimeout);
   toastTimeout = setTimeout(() => toast.classList.remove('show'), 2500);
 }
+
+
