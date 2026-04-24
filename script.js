@@ -453,7 +453,7 @@ function createProductCard(product, index) {
           : `<button class="add-btn" onclick="addToCart('${product.id}')">+</button>`
         }
       </div>
-    </div>TU
+    </div>
   `;
   return card;
 }
