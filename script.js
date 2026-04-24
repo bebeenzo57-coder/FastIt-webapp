@@ -334,6 +334,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   initAdmin();
   showWelcomeUser();
   initLocation();
+  initLocationClick()
 });
 
 //==================================================================================
@@ -366,6 +367,20 @@ function initLocation() {
 
   showToast("📍 Livraison à Ucac Douala entrée");
 });
+}
+
+function initLocationClick() {
+  const btn = document.getElementById('locationBtn');
+
+  if (!btn) return;
+
+  btn.addEventListener('click', () => {
+    const address = "Ucac Douala entree";
+
+    localStorage.setItem('user_address', address);
+
+    showToast("📍 Livraison à Ucac Douala entrée");
+  });
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
