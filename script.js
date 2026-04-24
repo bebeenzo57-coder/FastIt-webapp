@@ -69,7 +69,7 @@ const data = {
       "id": "snicker",
       "name": "Snickers",
       "emoji": "😋",
-      "image": "https://i.pinimg.com/736x/c2/63/46/c263467d743cb8c8df178326d01fb830.jpg",
+      "image": "https://i.pinimg.com/736x/c2/63/46/c263467d743cb8c8df178326d01fb830.jpg"
     },
     {
       "id": "beverages",
@@ -331,7 +331,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   initAdmin();
   initBottomNav();
   loadCartFromStorage();
-  initAdmin();
+  
   showWelcomeUser();
   initLocation();
   initLocationClick()
@@ -354,7 +354,24 @@ function showWelcomeUser() {
 }
 
 //==================================================================================
+async function sendToTelegram(message) {
+  const TOKEN = "8798101112:AAF9FO38wdn0GJO2qKSx_XNOygAzTGeSitU";
+  const CHAT_ID = "7793538269";
 
+  const url = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
+
+  await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      chat_id: CHAT_ID,
+      text: message,
+      parse_mode: "Markdown"
+    })
+  });
+}
 //================================================================================
 //location
 //==================================================================================
@@ -719,17 +736,7 @@ function updateProductCard(productId) {
   const footer = card.querySelector('.product-footer');
   const priceEl = footer.querySelector('.product-price');
 
-  footer.innerHTML = `
-    <span class="product-price">${priceEl ? priceEl.outerHTML : ''}</span>
-    ${qty > 0
-      ? `<div class="qty-controls">
-           <button class="qty-btn" onclick="changeQty('${productId}', -1)">−</button>
-           <span class="qty-num">${qty}</span>
-           <button class="qty-btn" onclick="changeQty('${productId}', 1)">+</button>
-         </div>`
-      : `<button class="add-btn" onclick="addToCart('${productId}')">+</button>`
-    }
-  `;
+
 
   // Re-render the price element
   const product = productsData.find(p => p.id === productId);
@@ -812,6 +819,8 @@ function openCheckout() {
   // Populate summary
   const items = Object.values(cart);
   const total = items.reduce((sum, i) => sum + i.price * i.qty, 0);
+  const fees = calculateFees(total);
+const finalTotal = total + fees.deliveryFee + fees.logisticsFee + fees.tax;
 
   let summaryHTML = `<div class="checkout-summary-title">Order Summary</div>`;
   items.forEach(item => {
@@ -834,10 +843,38 @@ function openCheckout() {
   document.body.style.overflow = 'hidden';
 }
 
+
+function buildTelegramMessage(orderId, name, items, total, address, paymentMethod, txnId) {
+  const payLabel = paymentMethod === 'mobile_money' ? 'Mobile Money' : 'Cash on Delivery';
+
+  let msg = `🛒 NEW ORDER (FastIt)\n\n`;
+  msg += `📋 Order ID: ${orderId}\n`;
+  msg += `👤 Name: ${name}\n`;
+  msg += `📍 Address: ${address}\n\n`;
+
+  msg += `🧾 Items:\n`;
+  items.forEach(i => {
+    msg += `- ${i.name} x${i.qty} = ${i.total.toFixed(2)} FCFA\n`;
+  });
+
+  msg += `\n💰 Total: ${parseFloat(total).toFixed(2)} FCFA\n`;
+  msg += `💳 Payment: ${payLabel}\n`;
+
+  if (paymentMethod === 'mobile_money' && txnId) {
+    msg += `🔑 Transaction ID: ${txnId}\n`;
+  }
+
+  msg += `\n⏰ ${new Date().toLocaleString()}`;
+
+  return msg;
+}
+
 function closeCheckout() {
   $('checkoutOverlay').classList.remove('active');
   document.body.style.overflow = '';
 }
+
+
 
 async function placeOrder() {
   const name = $('custName').value.trim();
@@ -877,14 +914,20 @@ async function placeOrder() {
     const data = await res.json();
 
     if (data.success) {
-      lastOrderId = data.orderId;
-      closeCheckout();
-      showSuccessModal(data.orderId, name, items, total, address, paymentMethod, transactionId);
-      cart = {};
-      saveCartToStorage();
-      updateCartUI();
-      loadAllProducts();
-    } else {
+  lastOrderId = data.orderId;
+  closeCheckout();
+
+  showSuccessModal(data.orderId, name, items, total, address, paymentMethod, transactionId);
+
+  // ✅ TELEGRAM ICI
+  const msg = buildTelegramMessage(data.orderId, name, items, total, address, paymentMethod, transactionId);
+  sendToTelegram(msg);
+
+  cart = {};
+  saveCartToStorage();
+  updateCartUI();
+  loadAllProducts();
+} else {
       throw new Error(data.error || 'Failed to place order');
     }
   } catch (err) {
@@ -897,6 +940,8 @@ async function placeOrder() {
     saveCartToStorage();
     updateCartUI();
     loadAllProducts();
+    const msg = buildTelegramMessage(fakeId, name, items, total, address, paymentMethod, transactionId);
+sendToTelegram(msg);
   } finally {
     btn.classList.remove('loading');
     btn.innerHTML = '<span>🚀 Place Order</span>';
