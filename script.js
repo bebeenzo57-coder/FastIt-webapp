@@ -343,7 +343,11 @@ function showWelcomeUser() {
   const el = document.getElementById('welcomeUser');
 
   if (name && el) {
-    el.textContent = `👋 Welcome, ${name}`;
+    el.innerHTML = `
+      <span class="user-badge">
+        👤 ${name} <span class="status-dot"></span>
+      </span>
+    `;
   }
 }
 
