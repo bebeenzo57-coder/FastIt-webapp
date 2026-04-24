@@ -950,16 +950,22 @@ sendToTelegram("🚀 PLACE ORDER TRIGGERED");
   showSuccessModal(data.orderId, name, items, total, address, paymentMethod, transactionId);
 
   // ✅ TELEGRAM ICI
-  try {
+  const snapshotCart = [...Object.values(cart)];
+
+const items = snapshotCart.map(i => ({
+  name: i.name,
+  qty: i.qty,
+  total: i.price * i.qty
+}));
+
+const totalValue = snapshotCart.reduce((sum, i) => sum + i.price * i.qty, 0);
+
+try {
   const msg = buildTelegramMessage(
     data.orderId || "TEMP",
     name,
-    Object.values(cart).map(i => ({
-      name: i.name,
-      qty: i.qty,
-      total: i.price * i.qty
-    })),
-    Object.values(cart).reduce((sum, i) => sum + i.price * i.qty, 0),
+    items,
+    totalValue,
     address,
     paymentMethod,
     transactionId
@@ -971,7 +977,6 @@ sendToTelegram("🚀 PLACE ORDER TRIGGERED");
 
 } catch (err) {
   console.error("❌ TELEGRAM ERROR:", err);
-  sendToTelegram("❌ ERROR BUILDING ORDER MESSAGE");
 }
 
   cart = {};
