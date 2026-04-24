@@ -382,6 +382,9 @@ async function sendToTelegram(message) {
   } catch (err) {
     console.error("TELEGRAM FETCH ERROR =>", err);
   }
+console.log("SENDING TO TELEGRAM:", message);
+  console.log("CART STATE BEFORE SEND:", cart);
+  
 }
 
 
@@ -950,33 +953,33 @@ sendToTelegram("🚀 PLACE ORDER TRIGGERED");
   showSuccessModal(data.orderId, name, items, total, address, paymentMethod, transactionId);
 
   // ✅ TELEGRAM ICI
-  const snapshotCart = [...Object.values(cart)];
+ // 🔥 SNAPSHOT ULTRA SAFE (IMPORTANT)
+const snapshot = JSON.parse(JSON.stringify(cart));
 
-const items = snapshotCart.map(i => ({
+const tgItems = Object.values(snapshot).map(i => ({
   name: i.name,
   qty: i.qty,
   total: i.price * i.qty
 }));
 
-const totalValue = snapshotCart.reduce((sum, i) => sum + i.price * i.qty, 0);
+const tgTotal = tgItems.reduce((sum, i) => sum + i.total, 0);
 
-try {
-  const msg = buildTelegramMessage(
-    data.orderId || "TEMP",
-    name,
-    items,
-    totalValue,
-    address,
-    paymentMethod,
-    transactionId
-  );
+const msg = buildTelegramMessage(
+  data.orderId || "TEMP",
+  name,
+  tgItems,
+  tgTotal,
+  address,
+  paymentMethod,
+  transactionId
+);
 
-  console.log("FINAL TELEGRAM MESSAGE =>", msg);
+console.log("📨 FINAL TELEGRAM MESSAGE =>", msg);
 
-  await sendToTelegram(msg);
-
-} catch (err) {
-  console.error("❌ TELEGRAM ERROR:", err);
+// ⚠️ ENVOI FORCÉ + DEBUG
+sendToTelegram(msg)
+  .then(() => console.log("✅ Telegram sent"))
+  .catch(err => console.error("❌ Telegram failed:", err));
 }
 
   cart = {};
