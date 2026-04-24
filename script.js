@@ -332,7 +332,23 @@ document.addEventListener('DOMContentLoaded', async () => {
   initBottomNav();
   loadCartFromStorage();
   initAdmin();
+  showWelcomeUser();
 });
+
+//==================================================================================
+//Welcome user
+//================================================================================
+function showWelcomeUser() {
+  const name = localStorage.getItem('user_name');
+  const el = document.getElementById('welcomeUser');
+
+  if (name && el) {
+    el.textContent = `👋 Welcome, ${name}`;
+  }
+}
+
+//==================================================================================
+
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // LOAD PRODUCTS FROM SERVER / JSON
@@ -1082,6 +1098,7 @@ function saveProfile() {
   localStorage.setItem('user_address', address);
 
   showToast('✅ Profile saved');
+  showWelcomeUser();
 }
 
 
