@@ -637,7 +637,7 @@ $('totalAmt').textContent = `${finalTotal.toFixed(2)} FCFA`;
       <img class="cart-item-img" src="${item.image}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?w=200&q=80'" />
       <div class="cart-item-info">
         <div class="cart-item-name">${item.name}</div>
-        <div class="cart-item-price">${item.price.toFixed(2)} FCFA × ${item.qty} = <strong>$${(item.price * item.qty).toFixed(2)}</strong></div>
+        <div class="cart-item-price">${item.price.toFixed(2)} FCFA × ${item.qty} = <strong>${(item.price * item.qty).toFixed(2)} FCFA</strong></div>
       </div>
       <div class="cart-item-controls">
         <button class="cart-qty-btn minus" onclick="changeQty('${item.id}', -1)">−</button>
@@ -686,8 +686,8 @@ function updateProductCard(productId) {
   const product = productsData.find(p => p.id === productId);
   if (product) {
     footer.innerHTML = `
-      <span class="product-price">$${product.price.toFixed(2)}</span>
-      ${qty > 0
+<span class="product-price">${product.price.toFixed(2)} FCFA</span>
+${qty > 0
         ? `<div class="qty-controls">
              <button class="qty-btn" onclick="changeQty('${productId}', -1)">−</button>
              <span class="qty-num">${qty}</span>
