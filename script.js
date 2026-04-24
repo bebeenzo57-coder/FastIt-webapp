@@ -356,24 +356,40 @@ function showWelcomeUser() {
 }
 
 //==================================================================================
+
 async function sendToTelegram(message) {
   const TOKEN = "8798101112:AAF9FO38wdn0GJO2qKSx_XNOygAzTGeSitU";
   const CHAT_ID = "7793538269";
 
   const url = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
 
-  await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      chat_id: CHAT_ID,
-      text: message,
-      parse_mode: "Markdown"
-    })
-  });
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        chat_id: CHAT_ID,
+        text: message
+        // ❌ enlève parse_mode pour éviter les bugs
+      })
+    });
+
+    const data = await res.json();
+    console.log("TELEGRAM RESPONSE =>", data);
+
+  } catch (err) {
+    console.error("TELEGRAM FETCH ERROR =>", err);
+  }
 }
+
+
+
+
+
+
+
 //================================================================================
 //location
 //==================================================================================
@@ -887,6 +903,15 @@ sendToTelegram("🚀 PLACE ORDER TRIGGERED");
   const paymentMethod = document.querySelector('input[name="payment"]:checked')?.value;
   const transactionId = $('txnId').value.trim();
 
+
+  console.log("DEBUG ORDER DATA =>", {
+  name,
+  address,
+  paymentMethod,
+  transactionId,
+  cart
+});
+
   // Validation
   if (!name) { showToast('⚠️ Please enter your name'); $('custName').focus(); return; }
   if (!address) { showToast('⚠️ Please enter your address'); $('custAddress').focus(); return; }
@@ -925,8 +950,29 @@ sendToTelegram("🚀 PLACE ORDER TRIGGERED");
   showSuccessModal(data.orderId, name, items, total, address, paymentMethod, transactionId);
 
   // ✅ TELEGRAM ICI
-  const msg = buildTelegramMessage(data.orderId, name, items, total, address, paymentMethod, transactionId);
-  sendToTelegram(msg);
+  try {
+  const msg = buildTelegramMessage(
+    data.orderId || "TEMP",
+    name,
+    Object.values(cart).map(i => ({
+      name: i.name,
+      qty: i.qty,
+      total: i.price * i.qty
+    })),
+    Object.values(cart).reduce((sum, i) => sum + i.price * i.qty, 0),
+    address,
+    paymentMethod,
+    transactionId
+  );
+
+  console.log("FINAL TELEGRAM MESSAGE =>", msg);
+
+  await sendToTelegram(msg);
+
+} catch (err) {
+  console.error("❌ TELEGRAM ERROR:", err);
+  sendToTelegram("❌ ERROR BUILDING ORDER MESSAGE");
+}
 
   cart = {};
   saveCartToStorage();
