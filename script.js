@@ -333,6 +333,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   loadCartFromStorage();
   initAdmin();
   showWelcomeUser();
+  initLocation();
 });
 
 //==================================================================================
@@ -353,6 +354,28 @@ function showWelcomeUser() {
 
 //==================================================================================
 
+//================================================================================
+//location
+//==================================================================================
+function initLocation() {
+  const locationText = document.getElementById('deliveryLocation');
+  const savedAddress = localStorage.getItem('user_address');
+
+  // Si déjà sauvegardé
+  if (savedAddress) {
+    locationText.textContent = savedAddress;
+  }
+
+  // Quand on clique
+  document.querySelector('.location-pill').addEventListener('click', () => {
+    const address = "Ucac Douala entree";
+
+    locationText.textContent = address;
+    localStorage.setItem('user_address', address);
+
+    showToast("📍 Delivery location updated");
+  });
+}
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // LOAD PRODUCTS FROM SERVER / JSON
