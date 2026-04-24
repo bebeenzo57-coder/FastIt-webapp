@@ -847,6 +847,14 @@ const finalTotal = total + fees.deliveryFee + fees.logisticsFee + fees.tax;
 
 
 function buildTelegramMessage(orderId, name, items, total, address, paymentMethod, txnId) {
+
+const msg = buildTelegramMessage(...);
+
+console.log(msg);
+sendToTelegram("📦 MESSAGE READY");
+sendToTelegram(msg);
+
+  
   const payLabel = paymentMethod === 'mobile_money' ? 'Mobile Money' : 'Cash on Delivery';
 
   let msg = `🛒 NEW ORDER (FastIt)\n\n`;
@@ -879,6 +887,8 @@ function closeCheckout() {
 
 
 async function placeOrder() {
+  console.log("🚀 PLACE ORDER CLICKED");
+sendToTelegram("🚀 PLACE ORDER TRIGGERED");
   const name = $('custName').value.trim();
   const address = $('custAddress').value.trim();
   const paymentMethod = document.querySelector('input[name="payment"]:checked')?.value;
