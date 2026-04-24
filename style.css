@@ -4,6 +4,45 @@
 ════════════════════════════════════════════ */
 
 /* ── CSS Variables ──────────────────────── */
+
+.user-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #1f2937; /* gris foncé moderne */
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-left: 10px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: #22c55e; /* vert */
+  border-radius: 50%;
+  display: inline-block;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
 :root {
   --green: #16a34a;
   --green-light: #22c55e;
