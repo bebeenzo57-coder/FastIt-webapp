@@ -849,10 +849,6 @@ const finalTotal = total + fees.deliveryFee + fees.logisticsFee + fees.tax;
 function buildTelegramMessage(orderId, name, items, total, address, paymentMethod, txnId) {
   const payLabel = paymentMethod === 'mobile_money' ? 'Mobile Money' : 'Cash on Delivery';
 
-
-console.log("MESSAGE TELEGRAM:", msg);
-sendToTelegram(msg);
-
   
   let msg = `🛒 NEW ORDER (FastIt)\n\n`;
   msg += `📋 Order ID: ${orderId}\n`;
