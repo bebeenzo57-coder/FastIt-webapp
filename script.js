@@ -986,7 +986,7 @@ sendToTelegram(msg)
   saveCartToStorage();
   updateCartUI();
   loadAllProducts();
-} else {
+else {
       throw new Error(data.error || 'Failed to place order');
     }
   } catch (err) {
