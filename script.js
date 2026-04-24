@@ -850,7 +850,6 @@ function buildTelegramMessage(orderId, name, items, total, address, paymentMetho
   const payLabel = paymentMethod === 'mobile_money' ? 'Mobile Money' : 'Cash on Delivery';
 
 
-const msg = buildTelegramMessage(orderId, name, items, total, address, paymentMethod, txnId);
 console.log("MESSAGE TELEGRAM:", msg);
 sendToTelegram(msg);
 
