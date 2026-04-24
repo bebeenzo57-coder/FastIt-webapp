@@ -937,71 +937,93 @@ sendToTelegram("🚀 PLACE ORDER TRIGGERED");
   btn.classList.add('loading');
   btn.innerHTML = '<span>⏳ Placing Order...</span>';
 
-  try {
-    const res = await fetch(`${API_BASE}/orders`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, address, paymentMethod, transactionId, items, total: parseFloat(total) })
-    });
+try {
+  const res = await fetch(`${API_BASE}/orders`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name,
+      address,
+      paymentMethod,
+      transactionId,
+      items,
+      total: parseFloat(total)
+    })
+  });
 
-    const data = await res.json();
+  const data = await res.json();
 
-    if (data.success) {
+  if (!data.success) {
+    throw new Error(data.error || 'Failed to place order');
+  }
+
   lastOrderId = data.orderId;
   closeCheckout();
 
-  showSuccessModal(data.orderId, name, items, total, address, paymentMethod, transactionId);
+  showSuccessModal(
+    data.orderId,
+    name,
+    items,
+    total,
+    address,
+    paymentMethod,
+    transactionId
+  );
 
-  // ✅ TELEGRAM ICI
- // 🔥 SNAPSHOT ULTRA SAFE (IMPORTANT)
-const snapshot = JSON.parse(JSON.stringify(cart));
+  // TELEGRAM
+  const snapshot = JSON.parse(JSON.stringify(cart));
 
-const tgItems = Object.values(snapshot).map(i => ({
-  name: i.name,
-  qty: i.qty,
-  total: i.price * i.qty
-}));
+  const tgItems = Object.values(snapshot).map(i => ({
+    name: i.name,
+    qty: i.qty,
+    total: i.price * i.qty
+  }));
 
-const tgTotal = tgItems.reduce((sum, i) => sum + i.total, 0);
+  const tgTotal = tgItems.reduce((sum, i) => sum + i.total, 0);
 
-const msg = buildTelegramMessage(
-  data.orderId || "TEMP",
-  name,
-  tgItems,
-  tgTotal,
-  address,
-  paymentMethod,
-  transactionId
-);
+  const msg = buildTelegramMessage(
+    data.orderId,
+    name,
+    tgItems,
+    tgTotal,
+    address,
+    paymentMethod,
+    transactionId
+  );
 
-console.log("📨 FINAL TELEGRAM MESSAGE =>", msg);
-
-// ⚠️ ENVOI FORCÉ + DEBUG
-sendToTelegram(msg)
-  .then(() => console.log("✅ Telegram sent"))
-  .catch(err => console.error("❌ Telegram failed:", err));
-}
+  sendToTelegram(msg);
 
   cart = {};
   saveCartToStorage();
   updateCartUI();
   loadAllProducts();
-else {
-      throw new Error(data.error || 'Failed to place order');
-    }
-  } catch (err) {
-    // Demo mode: simulate order placement when backend is not running
-    const fakeId = `FST-${1001 + Math.floor(Math.random() * 999)}`;
-    lastOrderId = fakeId;
-    closeCheckout();
-    showSuccessModal(fakeId, name, items, total, address, paymentMethod, transactionId);
-    cart = {};
-    saveCartToStorage();
-    updateCartUI();
-    loadAllProducts();
-    const msg = buildTelegramMessage(fakeId, name, items, total, address, paymentMethod, transactionId);
-sendToTelegram(msg);
-  } finally {
+
+} catch (err) {
+  console.error(err);
+
+  const fakeId = `FST-${1001 + Math.floor(Math.random() * 999)}`;
+  lastOrderId = fakeId;
+
+  closeCheckout();
+
+  showSuccessModal(
+    fakeId,
+    name,
+    items,
+    total,
+    address,
+    paymentMethod,
+    transactionId
+  );
+
+  cart = {};
+  saveCartToStorage();
+  updateCartUI();
+  loadAllProducts();
+
+  const msg = buildTelegramMessage(fakeId, name, items, total, address, paymentMethod, transactionId);
+  sendToTelegram(msg);
+} finally {
     btn.classList.remove('loading');
     btn.innerHTML = '<span>🚀 Place Order</span>';
   }
