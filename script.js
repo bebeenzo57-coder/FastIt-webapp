@@ -991,8 +991,7 @@ try {
     transactionId
   );
 
-  sendToTelegram(msg);
-
+await sendToTelegram(msg);
   cart = {};
   saveCartToStorage();
   updateCartUI();
