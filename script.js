@@ -36,10 +36,10 @@ let categoriesData = [];
 const data = {
   "categories": [
     {
-      "id": "fruits",
-      "name": "Fruits & Veggies",
+      "id": "Produits alimentaires",
+      "name": "Produits alimentaires",
       "emoji": "🥦",
-      "image": "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=200&q=80"
+      "image": "https://i.pinimg.com/736x/7f/c1/27/7fc127e3dec4c1897667f042b8eedd9e.jpg"//"https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=200&q=80"
     },
     {
       "id": "dairy",
@@ -69,11 +69,11 @@ const data = {
       "id": "snicker",
       "name": "Snickers",
       "emoji": "😋",
-      "image": "https://i.pinimg.com/736x/c2/63/46/c263467d743cb8c8df178326d01fb830.jpg"
+      "image": "https://i.pinimg.com/736x/c2/63/46/c263467d743cb8c8df178326d01fb830.jpg",
     },
     {
-      "id": "beverages",
-      "name": "Beverages",
+      "id": "Boissons",
+      "name": "Boissons",
       "emoji": "🧃",
       "image": "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=200&q=80"
     },
@@ -99,11 +99,11 @@ const data = {
   "products": [
     {
       "id": "p1",
-      "name": "Fresh Bananas",
-      "category": "fruits",
+      "name": "Malta Guinness",
+      "category": "Boissons",
       "price": 700,
       "unit": "bunch",
-      "image": "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&q=80",
+      "image": "https://i.pinimg.com/736x/02/51/bd/0251bd89a45163c984991d486ce7c49d.jpg",
       "badge": "Popular",
       "badgeColor": "#22c55e"
     },
@@ -209,51 +209,51 @@ const data = {
     },
     {
       "id": "p12",
-      "name": "Trail Mix",
-      "category": "snacks",
+      "name": "Cube Maggi (petit paquet)",
+      "category": "Produits alimentaires",
       "price": 500,
       "unit": "200g",
-      "image": "https://images.unsplash.com/photo-1583277793374-b8e96e75d1dc?w=400&q=80",
+      "image": "https://i.pinimg.com/1200x/db/e7/49/dbe749527f6c774450ff05e3ec7e65bb.jpg",
       "badge": "Healthy",
       "badgeColor": "#22c55e"
     },
     {
       "id": "p13",
-      "name": "Orange Juice",
-      "category": "beverages",
+      "name": "Mayonnaise petit format",
+      "category": "Produits alimentaires",
       "price": 350,
       "unit": "1L",
-      "image": "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=400&q=80",
+      "image": "https://i.pinimg.com/736x/68/e1/c5/68e1c55c766999ba455e8f362d79d477.jpg",
       "badge": "Fresh",
       "badgeColor": "#f97316"
     },
     {
       "id": "p14",
-      "name": "Sparkling Water",
-      "category": "beverages",
+      "name": "Sardine en boite",
+      "category": "Produits alimentaires",
       "price": 200,
       "unit": "500ml",
-      "image": "https://images.unsplash.com/photo-1523362628745-0c100150b504?w=400&q=80",
+      "image": "https://i.pinimg.com/736x/ad/c8/56/adc856ad221569045f11f9c605a64c26.jpg",
       "badge": null,
       "badgeColor": null
     },
     {
       "id": "p15",
-      "name": "Chicken Breast",
-      "category": "meat",
+      "name": "Riz parfumé (1kg)",
+      "category": "Produits alimentaires",
       "price": 750,
       "unit": "500g",
-      "image": "https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=400&q=80",
+      "image": "https://i.pinimg.com/originals/5c/d1/5e/5cd15ea3c3b4f4e6225defdf9dd398f5.jpg",
       "badge": "Fresh",
       "badgeColor": "#f97316"
     },
     {
       "id": "p16",
-      "name": "Salmon Fillet",
-      "category": "meat",
+      "name": "Spaghetti (pack 500g)",
+      "category": "Produits alimentaires",
       "price": 1000,
       "unit": "300g",
-      "image": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&q=80",
+      "image": "https://i.pinimg.com/1200x/eb/8d/1f/eb8d1f9079308991e720354f74088d89.jpg",
       "badge": "Premium",
       "badgeColor": "#8b5cf6"
     },
