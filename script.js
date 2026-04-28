@@ -917,6 +917,7 @@ try {
     body: JSON.stringify({
       name,
       address,
+      whatsapp,
       paymentMethod,
       transactionId,
       items,
