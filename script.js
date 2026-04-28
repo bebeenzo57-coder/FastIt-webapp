@@ -335,7 +335,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   showWelcomeUser();
   initLocation();
   initLocationClick()
-  sendToTelegram("✅ BOT CONNECTED");
 
 });
 
@@ -356,40 +355,6 @@ function showWelcomeUser() {
 }
 
 //==================================================================================
-
-async function sendToTelegram(message) {
-  const TOKEN = "8798101112:AAF9FO38wdn0GJO2qKSx_XNOygAzTGeSitU";
-  const CHAT_ID = "7793538269";
-
-  const url = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
-
-  try {
-    const res = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        chat_id: CHAT_ID,
-        text: message
-        // ❌ enlève parse_mode pour éviter les bugs
-      })
-    });
-
-    const data = await res.json();
-    console.log("TELEGRAM RESPONSE =>", data);
-
-  } catch (err) {
-    console.error("TELEGRAM FETCH ERROR =>", err);
-  }
-console.log("SENDING TO TELEGRAM:", message);
-  console.log("CART STATE BEFORE SEND:", cart);
-  
-}
-
-
-
-
 
 
 
@@ -907,6 +872,14 @@ sendToTelegram("🚀 PLACE ORDER TRIGGERED");
   const transactionId = $('txnId').value.trim();
 
 
+  const whatsapp = $('custWhatsapp').value.trim();
+
+if (!whatsapp) {
+  showToast('⚠️ Enter WhatsApp number');
+  return;
+}
+
+
   console.log("DEBUG ORDER DATA =>", {
   name,
   address,
@@ -991,7 +964,6 @@ try {
     transactionId
   );
 
-await sendToTelegram(msg);
   cart = {};
   saveCartToStorage();
   updateCartUI();
@@ -1021,7 +993,6 @@ await sendToTelegram(msg);
   loadAllProducts();
 
   const msg = buildTelegramMessage(fakeId, name, items, total, address, paymentMethod, transactionId);
-  sendToTelegram(msg);
 } finally {
     btn.classList.remove('loading');
     btn.innerHTML = '<span>🚀 Place Order</span>';
@@ -1037,11 +1008,7 @@ function showSuccessModal(orderId, name, items, total, address, paymentMethod, t
   document.body.style.overflow = 'hidden';
 
   // WhatsApp button
-  $('whatsappBtn').onclick = () => {
-    const msg = buildWhatsAppMessage(orderId, name, items, total, address, paymentMethod, txnId);
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
-    window.open(url, '_blank');
-  };
+ 
 
   // Track button
   $('trackOrderLink').onclick = () => {
